@@ -22,3 +22,8 @@ Open `index.html` in a browser.
 - https://www.npmjs.com/package/error-ux-kit
 - https://www.npmjs.com/package/frontend-observer
 - https://www.npmjs.com/package/perf-reviewer
+
+
+## Resume download
+
+The portfolio includes `assets/Mohamed_Ali_Ayadi_CV.pdf`, linked from the top navigation and the header download button.

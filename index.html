@@ -3,344 +3,448 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Interactive portfolio for Mohamed Ali Ayadi, Senior Full Stack Software Engineer." />
-  <title>Mohamed Ali Ayadi — Senior Full Stack Engineer</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <meta name="description" content="Mohamed Ali Ayadi — Senior Full Stack Software Engineer. React, Next.js, TypeScript. Building customer-facing web products that move the numbers." />
+  <title>Mohamed Ali Ayadi — Senior Full Stack Software Engineer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Three.js -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 </head>
 <body>
-  <canvas id="spaceCanvas" aria-hidden="true"></canvas>
-  <div class="noise" aria-hidden="true"></div>
-  <div class="cursor-glow" aria-hidden="true"></div>
 
-  <header class="site-header" data-reveal>
-    <a class="brand" href="#top" aria-label="Go to top">
-      <img src="assets/monogram.svg" alt="" />
-      <span>Mohamed Ali Ayadi</span>
+  <!-- Noise overlay -->
+  <div class="noise"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="#top" class="nav__logo">
+      <span class="nav__logo-mark">M</span>
+      <span class="nav__logo-text">ayadi</span>
     </a>
-    <nav class="main-nav" aria-label="Main navigation">
-      <a href="#work">Experience</a>
-      <a href="#open-source">Open Source</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-      <a href="assets/Mohamed_Ali_Ayadi_CV.pdf" download="Mohamed_Ali_Ayadi_CV.pdf">Resume</a>
-    </nav>
-    <div class="header-actions">
-      <a class="header-cta header-resume" href="assets/Mohamed_Ali_Ayadi_CV.pdf" download="Mohamed_Ali_Ayadi_CV.pdf">Download CV</a>
-      <a class="header-cta" href="mailto:moham.ayedi@gmail.com">Let’s talk</a>
+    <ul class="nav__links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="assets/Mohamed_Ali_Ayadi_CV.pdf" download class="nav__cv">
+      CV
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+    </a>
+  </nav>
+
+  <!-- Hero -->
+  <header id="top" class="hero">
+    <div class="hero__grid">
+      <div class="hero__text">
+        <div class="hero__eyebrow" data-reveal>
+          <span class="hero__dot"></span>
+          Senior Full Stack Engineer · Relocating to Germany
+        </div>
+        <h1 class="hero__title">
+          <span data-reveal data-reveal-delay="100">Mohamed</span>
+          <span data-reveal data-reveal-delay="200">Ali</span>
+          <span data-reveal data-reveal-delay="300" class="hero__accent">Ayadi</span>
+        </h1>
+        <p class="hero__tagline" data-reveal data-reveal-delay="500">
+          I build customer-facing web products that <em>move the numbers</em> — from discovery and design through deployment and on&#8209;call.
+        </p>
+        <div class="hero__cta" data-reveal data-reveal-delay="700">
+          <a href="#projects" class="btn btn--primary">See my work</a>
+          <a href="#contact" class="btn btn--ghost">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <canvas id="three-canvas"></canvas>
+        <div class="hero__visual-caption">
+          <span class="dot dot--live"></span>
+          Interactive · Move your cursor
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__scroll">
+      <span>Scroll</span>
+      <svg width="14" height="20" viewBox="0 0 14 20" fill="none">
+        <rect x="0.75" y="0.75" width="12.5" height="18.5" rx="6.25" stroke="currentColor" stroke-width="1.5"/>
+        <circle class="hero__scroll-dot" cx="7" cy="6" r="1.5" fill="currentColor"/>
+      </svg>
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero section-shell">
-      <div class="hero-copy" data-reveal>
-        <p class="eyebrow"><span class="pulse-dot"></span> Senior Full Stack Software Engineer · Relocating to Germany</p>
-        <h1>Senior full-stack engineer building product systems that scale.</h1>
-        <p class="hero-lead">
-          I build customer-facing web products with React, Next.js, TypeScript, Python, PostgreSQL and production-grade architecture — from discovery and design through deployment, experimentation and on-call support.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#work">See experience</a>
-          <a class="btn btn-secondary" href="#open-source">Explore npm projects</a>
+  <main>
+
+    <!-- About -->
+    <section id="about" class="section section--about">
+      <div class="section__inner">
+        <div class="section__head" data-reveal>
+          <span class="section__num">01</span>
+          <h2 class="section__title">About</h2>
         </div>
-        <div class="hero-meta" aria-label="Portfolio highlights">
-          <div><strong>6+</strong><span>years engineering</span></div>
-          <div><strong>40%+</strong><span>retention impact</span></div>
-          <div><strong>3</strong><span>published npm tools</span></div>
-        </div>
-      </div>
-
-      <div class="hero-stage" data-reveal>
-        <div class="stage-perspective" id="stage3d">
-          <div class="holo-card main-console">
-            <div class="console-topline">
-              <span>ENGINEERING SYSTEM</span>
-              <span class="status-pill">LIVE</span>
-            </div>
-            <div class="orbit-system" aria-hidden="true">
-              <div class="orbit orbit-one"></div>
-              <div class="orbit orbit-two"></div>
-              <div class="orbit orbit-three"></div>
-              <button class="planet planet-react" data-target="skills">React</button>
-              <button class="planet planet-next" data-target="work">Next.js</button>
-              <button class="planet planet-api" data-target="skills">APIs</button>
-              <button class="planet planet-obs" data-target="open-source">npm</button>
-              <div class="core-sphere"><span>MA</span></div>
-            </div>
-            <div class="console-grid">
-              <span>Product ownership</span>
-              <span>BFF architecture</span>
-              <span>A/B testing</span>
-              <span>Production reliability</span>
-            </div>
-          </div>
-
-          <div class="floating-panel panel-code">
-            <span class="terminal-dots"><i></i><i></i><i></i></span>
-            <code>shipProductFlow()</code>
-            <code>designBffLayer()</code>
-            <code>debugProduction()</code>
-          </div>
-
-          <div class="floating-panel panel-score">
-            <small>Profile</small>
-            <strong>Senior Full Stack Engineer</strong>
-            <span>Ownership · Architecture · Reliability</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-shell impact-strip" aria-label="Key impact" data-reveal>
-      <article>
-        <span>Subscriber journeys</span>
-        <strong>Used by tens of thousands</strong>
-        <p>Built account, subscription, checkout and post-purchase experiences for active subscribers across multiple product lines.</p>
-      </article>
-      <article>
-        <span>Experimentation</span>
-        <strong>40%+ retention improvement</strong>
-        <p>Helped improve subscription retention through pricing, onboarding and checkout experiments backed by Statsig.</p>
-      </article>
-      <article>
-        <span>Architecture</span>
-        <strong>Legacy → Next.js + BFF</strong>
-        <p>Led a migration that reduced frontend complexity and made ownership between teams clearer.</p>
-      </article>
-    </section>
-
-    <section id="work" class="section-shell experience-section">
-      <div class="section-heading" data-reveal>
-        <p class="eyebrow">Experience</p>
-        <h2>Experience and impact.</h2>
-        <p>Selected work across customer-facing products, platform migrations, experimentation, backend services, internal tooling, mentoring, and production support.</p>
-      </div>
-
-      <div class="experience-stack" data-reveal>
-        <article class="experience-card featured-card tilt-card">
-          <div class="role-header">
-            <div>
-              <p class="timeline-date">March 2021 — Present · London, UK</p>
-              <h3>Senior Full Stack Engineer · Numan</h3>
-            </div>
-            <div class="role-badge">Health-tech · Subscription product</div>
-          </div>
-
-          <p class="role-summary">
-            I worked across revenue-critical customer journeys and the platform layers behind them — shipping commercial/account features, building BFF and backend services, improving experimentation loops, and supporting production systems.
+        <div class="about__grid">
+          <p class="about__lead" data-reveal>
+            Senior Full Stack Engineer with <span class="hl">6 years</span> of experience building and scaling customer-facing web products. Strong on the frontend (React, Next.js, TypeScript) and the backend (Python, REST API design, PostgreSQL, Redis), with hands-on experience in BFF architecture and production reliability.
           </p>
-
-          <div class="scope-grid" aria-label="Numan scope overview">
-            <div><strong>Frontend</strong><span>React, Next.js, TypeScript, commercial flows</span></div>
-            <div><strong>Backend</strong><span>Python/Django, REST APIs, PostgreSQL, Redis</span></div>
-            <div><strong>Product</strong><span>Pricing, onboarding, checkout, subscriptions</span></div>
-            <div><strong>Reliability</strong><span>Production monitoring, on-call, debugging</span></div>
-          </div>
-
-          <div class="achievement-grid">
-            <div class="achievement-card">
-              <span>Customer-facing product</span>
-              <p>Shipped commercial and account-flow features used by tens of thousands of active subscribers across multiple product lines.</p>
+          <div class="about__facts">
+            <div class="fact" data-reveal>
+              <div class="fact__num">6+</div>
+              <div class="fact__label">Years shipping<br/>production code</div>
             </div>
-            <div class="achievement-card">
-              <span>Experimentation and retention</span>
-              <p>Designed and ran Statsig A/B experiments across pricing, onboarding and checkout, contributing to a 40%+ improvement in overall subscription retention.</p>
+            <div class="fact" data-reveal data-reveal-delay="100">
+              <div class="fact__num">40%+</div>
+              <div class="fact__label">Retention lift driven<br/>via A/B experiments</div>
             </div>
-            <div class="achievement-card">
-              <span>Architecture migration</span>
-              <p>Led a legacy-to-Next.js migration using a BFF architecture, reducing frontend build complexity and clarifying ownership boundaries between teams.</p>
+            <div class="fact" data-reveal data-reveal-delay="200">
+              <div class="fact__num">3</div>
+              <div class="fact__label">Published<br/>npm packages</div>
             </div>
-            <div class="achievement-card">
-              <span>Revenue surface</span>
-              <p>Delivered an end-to-end commercial flow for a new product line — landing pages, subscription signup, checkout and post-purchase experience.</p>
-            </div>
-            <div class="achievement-card">
-              <span>Backend and API ownership</span>
-              <p>Built and maintained Python/Django services backed by PostgreSQL and Redis, including BFF layers and REST APIs consumed by web clients and internal tooling.</p>
-            </div>
-            <div class="achievement-card">
-              <span>Operational tooling</span>
-              <p>Built an internal clinician tool that reduced manual steps for clinical operations and contributed to lower operational costs.</p>
-            </div>
-            <div class="achievement-card wide-achievement">
-              <span>Team maturity and production support</span>
-              <p>Mentored junior and mid-level engineers through reviews, pairing and design discussions while participating in on-call rotations for high-availability revenue-critical systems.</p>
+            <div class="fact" data-reveal data-reveal-delay="300">
+              <div class="fact__num">4</div>
+              <div class="fact__label">Languages<br/>spoken</div>
             </div>
           </div>
-        </article>
-
-        <article class="experience-card tilt-card">
-          <div class="role-header">
-            <div>
-              <p class="timeline-date">Dec 2019 — March 2021 · Tunisia</p>
-              <h3>Software Engineer · ATS Digital</h3>
-            </div>
-            <div class="role-badge">Gaming · Healthcare · Education</div>
-          </div>
-
-          <p class="role-summary">
-            Built MERN and microservice-based features across multiple product domains, including real-time gaming tournaments, patient-facing healthcare flows and education competition tooling.
-          </p>
-
-          <div class="achievement-grid compact-grid">
-            <div class="achievement-card">
-              <span>Gaming tournament platform</span>
-              <p>Built real-time matchmaking, bracket management and user profile features for a web-based tournament product.</p>
-            </div>
-            <div class="achievement-card">
-              <span>Healthcare platform</span>
-              <p>Improved performance and reliability for a product used by patients to access records, book consultations and request clinical reviews.</p>
-            </div>
-            <div class="achievement-card">
-              <span>Student competition platform</span>
-              <p>Developed live problem submission and real-time leaderboard features for an interactive coding competition product.</p>
-            </div>
-          </div>
-        </article>
+        </div>
       </div>
     </section>
 
-    <section id="open-source" class="section-shell open-source-section">
-      <div class="section-heading centered" data-reveal>
-        <p class="eyebrow">Open-source lab</p>
-        <h2>Three npm tools built from real frontend problems.</h2>
-        <p>Each project is directly linked to npm and framed around the production problem it solves.</p>
-      </div>
-
-      <div class="project-lab" data-reveal>
-        <div class="project-tabs" role="tablist" aria-label="Open source projects">
-          <button class="project-tab active" data-project="error">Error UX Kit</button>
-          <button class="project-tab" data-project="observer">Frontend Observer</button>
-          <button class="project-tab" data-project="perf">Perf Reviewer</button>
+    <!-- Experience -->
+    <section id="experience" class="section section--experience">
+      <div class="section__inner">
+        <div class="section__head" data-reveal>
+          <span class="section__num">02</span>
+          <h2 class="section__title">Experience</h2>
         </div>
 
-        <div class="project-console tilt-card">
-          <div class="project-terminal">
-            <div class="terminal-bar"><span></span><span></span><span></span><b id="terminalTitle">error-ux-kit</b></div>
-            <pre id="projectSnippet">npm i error-ux-kit
-
-normalizeApiError(response)
-  .toUserMessage()
-  .withAction("Try again")</pre>
+        <div class="timeline">
+          <div class="timeline__rail" aria-hidden="true">
+            <div class="timeline__progress"></div>
           </div>
-          <div class="project-detail">
-            <p class="eyebrow" id="projectType">TypeScript · npm · CLI tooling</p>
-            <h3 id="projectTitle">Error UX Kit</h3>
-            <p id="projectDescription">
-              Maps backend and API error codes into consistent, user-friendly frontend messages and actions, avoiding vague “Something went wrong” fallbacks.
+
+          <article class="job" data-reveal>
+            <div class="job__year-bg" aria-hidden="true">2021<span class="job__year-bg-now">→ now</span></div>
+            <div class="job__marker" aria-hidden="true"></div>
+
+            <header class="job__header">
+              <div class="job__period">
+                <span class="job__period-pill">Current role</span>
+                March 2021 — Present
+              </div>
+              <h3 class="job__title">Senior Full Stack Engineer</h3>
+              <div class="job__company-row">
+                <span class="job__company">Numan</span>
+                <span class="job__sep">·</span>
+                <span class="job__location">London, UK</span>
+              </div>
+            </header>
+
+            <div class="job__stats">
+              <div class="stat-callout">
+                <div class="stat-callout__num" data-count-to="40" data-suffix="%+">0</div>
+                <div class="stat-callout__label">retention lift via A/B experiments</div>
+              </div>
+              <div class="stat-callout">
+                <div class="stat-callout__num" data-count-to="10" data-suffix="K+">0</div>
+                <div class="stat-callout__label">active subscribers reached</div>
+              </div>
+              <div class="stat-callout">
+                <div class="stat-callout__num"><span data-count-to="1">0</span></div>
+                <div class="stat-callout__label">new revenue surface delivered end-to-end</div>
+              </div>
+            </div>
+
+            <div class="job__stack">
+              <span class="tech">React</span>
+              <span class="tech">Next.js</span>
+              <span class="tech">TypeScript</span>
+              <span class="tech">Python</span>
+              <span class="tech">Django</span>
+              <span class="tech">PostgreSQL</span>
+              <span class="tech">Redis</span>
+              <span class="tech">Statsig</span>
+              <span class="tech">BFF</span>
+            </div>
+
+            <ul class="job__bullets">
+              <li>Shipped customer-facing features across commercial and account flows used by tens of thousands of active subscribers across multiple product lines.</li>
+              <li>Designed and ran A/B experiments via <span class="tag-inline">Statsig</span> across pricing, onboarding, and checkout flows; contributed to a <strong>40%+ improvement</strong> in overall subscription retention through iterative experimentation and data-led product decisions.</li>
+              <li>Led a full legacy-to-Next.js migration using a <span class="tag-inline">BFF architecture</span>, reducing frontend build complexity and clarifying team ownership boundaries — cutting cross-team dependency incidents noticeably.</li>
+              <li>Delivered an end-to-end commercial flow for a new product line — landing pages, subscription signup, checkout, and post-purchase — which became one of the company's primary revenue surfaces.</li>
+              <li>Built and maintained Python backend services (<span class="tag-inline">Django</span>) backed by <span class="tag-inline">PostgreSQL</span> and <span class="tag-inline">Redis</span>, including BFF layers powering customer-facing flows.</li>
+              <li>Built an internal clinician tool that streamlined operational workflows, reducing manual steps and contributing to lower operational costs.</li>
+              <li>Mentored junior and mid-level engineers through code reviews, design discussions, and pairing; participated in on-call rotations for revenue-critical systems.</li>
+            </ul>
+          </article>
+
+          <article class="job" data-reveal>
+            <div class="job__year-bg" aria-hidden="true">2019<span class="job__year-bg-now">— 2021</span></div>
+            <div class="job__marker" aria-hidden="true"></div>
+
+            <header class="job__header">
+              <div class="job__period">
+                Dec 2019 — March 2021
+              </div>
+              <h3 class="job__title">Software Engineer</h3>
+              <div class="job__company-row">
+                <span class="job__company">ATS Digital</span>
+                <span class="job__sep">·</span>
+                <span class="job__location">Tunisia</span>
+              </div>
+            </header>
+
+            <div class="job__stack">
+              <span class="tech">MongoDB</span>
+              <span class="tech">Express</span>
+              <span class="tech">React</span>
+              <span class="tech">Node.js</span>
+              <span class="tech">Microservices</span>
+              <span class="tech">WebSockets</span>
+            </div>
+
+            <ul class="job__bullets">
+              <li>Built core features of a web-based gaming tournament platform (<span class="tag-inline">MERN stack</span>, microservices), handling real-time matchmaking, bracket management, and user profiles.</li>
+              <li>Improved performance and reliability of a healthcare platform used by patients to access records, book consultations, and request clinical reviews — contributing to a meaningful reduction in support load.</li>
+              <li>Developed interactive features for a student coding competition platform, including live problem submission and real-time leaderboard updates.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section section--projects">
+      <div class="section__inner">
+        <div class="section__head" data-reveal>
+          <span class="section__num">03</span>
+          <h2 class="section__title">Open Source</h2>
+          <p class="section__sub">Published TypeScript packages solving real production problems.</p>
+        </div>
+
+        <div class="projects">
+          <article class="project" data-reveal>
+            <div class="project__index">/01</div>
+            <h3 class="project__title">Frontend Observer</h3>
+            <p class="project__sub">Lightweight Frontend Observability SDK</p>
+            <p class="project__desc">
+              Lightweight TypeScript SDK for tracking frontend errors, API request timings, and async measurements. Built for teams that need visibility into slow or failing requests without committing to a full observability platform up front. Designed a pluggable exporter system with a clean TypeScript API and safe failure handling so the SDK never breaks the host app.
             </p>
-            <div class="project-actions">
-              <a class="btn btn-primary" id="projectLink" href="https://www.npmjs.com/package/error-ux-kit" target="_blank" rel="noopener noreferrer">Open npm package</a>
-              <button class="btn btn-secondary copy-install" data-install="npm i error-ux-kit">Copy install</button>
+            <div class="project__tags">
+              <span class="tag">TypeScript</span>
+              <span class="tag">npm</span>
+              <span class="tag">PerformanceObserver</span>
+              <span class="tag">Pluggable exporters</span>
+            </div>
+            <a class="project__link" href="https://www.npmjs.com/package/frontend-observer" target="_blank" rel="noopener">
+              View on npm
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </a>
+          </article>
+
+          <article class="project" data-reveal data-reveal-delay="100">
+            <div class="project__index">/02</div>
+            <h3 class="project__title">Perf Reviewer</h3>
+            <p class="project__sub">Frontend Performance Review Toolkit</p>
+            <p class="project__desc">
+              TypeScript library that generates readable performance reports from runtime signals — page performance, API speed, slow resources, long tasks, and manual measurements. Turns raw signals into scores, summaries, bottlenecks, and practical recommendations. A focused diagnostic tool that complements Lighthouse and Sentry rather than replacing them.
+            </p>
+            <div class="project__tags">
+              <span class="tag">TypeScript</span>
+              <span class="tag">npm</span>
+              <span class="tag">Web Vitals</span>
+              <span class="tag">Reporting</span>
+            </div>
+            <a class="project__link" href="https://www.npmjs.com/package/perf-reviewer" target="_blank" rel="noopener">
+              View on npm
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </a>
+          </article>
+
+          <article class="project" data-reveal data-reveal-delay="200">
+            <div class="project__index">/03</div>
+            <h3 class="project__title">Error UX Kit</h3>
+            <p class="project__sub">API Error UX Coverage Toolkit</p>
+            <p class="project__desc">
+              TypeScript toolkit that maps backend/API error codes into consistent, user-friendly frontend messages and actions. Solves the production problem where APIs return many error codes but frontends fall back to vague "Something went wrong" messages. Ships with error catalogs, normalisation, validation rules, coverage reports, and a CLI checker for missing messages, owners, categories, and retry actions.
+            </p>
+            <div class="project__tags">
+              <span class="tag">TypeScript</span>
+              <span class="tag">npm</span>
+              <span class="tag">CLI tooling</span>
+              <span class="tag">DX</span>
+            </div>
+            <a class="project__link" href="https://www.npmjs.com/package/error-ux-kit" target="_blank" rel="noopener">
+              View on npm
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section section--skills">
+      <div class="section__inner">
+        <div class="section__head" data-reveal>
+          <span class="section__num">04</span>
+          <h2 class="section__title">Skills</h2>
+        </div>
+
+        <div class="skills">
+          <div class="skill-group" data-reveal>
+            <h3 class="skill-group__title">Frontend</h3>
+            <div class="skill-group__items">
+              <span class="chip chip--primary">React</span>
+              <span class="chip chip--primary">Next.js</span>
+              <span class="chip chip--primary">TypeScript</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">HTML5</span>
+              <span class="chip">CSS3</span>
+              <span class="chip">Vue.js</span>
+              <span class="chip">Nuxt.js</span>
+            </div>
+          </div>
+
+          <div class="skill-group" data-reveal data-reveal-delay="100">
+            <h3 class="skill-group__title">Backend</h3>
+            <div class="skill-group__items">
+              <span class="chip chip--primary">Python</span>
+              <span class="chip chip--primary">Django</span>
+              <span class="chip">Node.js</span>
+              <span class="chip">REST API design</span>
+              <span class="chip">BFF architecture</span>
+            </div>
+          </div>
+
+          <div class="skill-group" data-reveal data-reveal-delay="200">
+            <h3 class="skill-group__title">Databases & Infra</h3>
+            <div class="skill-group__items">
+              <span class="chip">PostgreSQL</span>
+              <span class="chip">MySQL</span>
+              <span class="chip">Redis</span>
+              <span class="chip">Docker</span>
+              <span class="chip">Git</span>
+              <span class="chip">GitHub Actions</span>
+            </div>
+          </div>
+
+          <div class="skill-group" data-reveal data-reveal-delay="300">
+            <h3 class="skill-group__title">Testing & Observability</h3>
+            <div class="skill-group__items">
+              <span class="chip">Jest</span>
+              <span class="chip">Vitest</span>
+              <span class="chip">React Testing Library</span>
+              <span class="chip">Sentry</span>
+              <span class="chip">Grafana</span>
+              <span class="chip">On-call debugging</span>
+            </div>
+          </div>
+
+          <div class="skill-group" data-reveal data-reveal-delay="400">
+            <h3 class="skill-group__title">Other</h3>
+            <div class="skill-group__items">
+              <span class="chip">Statsig (A/B testing)</span>
+              <span class="chip">npm publishing</span>
+              <span class="chip">CLI tooling</span>
             </div>
           </div>
         </div>
 
-        <div class="project-card-grid">
-          <article class="project-card tilt-card" data-project-card="error">
-            <span class="project-index">01</span>
-            <h3>Error UX Kit</h3>
-            <p>Error catalogues, safe normalization, validation rules, coverage reports and a CLI checker for frontend ownership.</p>
-            <a href="https://www.npmjs.com/package/error-ux-kit" target="_blank" rel="noopener noreferrer">View on npm →</a>
-          </article>
-          <article class="project-card tilt-card" data-project-card="observer">
-            <span class="project-index">02</span>
-            <h3>Frontend Observer</h3>
-            <p>Tracks frontend errors, API timings and async measurements, then sends events through pluggable exporters.</p>
-            <a href="https://www.npmjs.com/package/frontend-observer" target="_blank" rel="noopener noreferrer">View on npm →</a>
-          </article>
-          <article class="project-card tilt-card" data-project-card="perf">
-            <span class="project-index">03</span>
-            <h3>Perf Reviewer</h3>
-            <p>Turns runtime performance signals into readable reports, scores, bottlenecks and practical recommendations.</p>
-            <a href="https://www.npmjs.com/package/perf-reviewer" target="_blank" rel="noopener noreferrer">View on npm →</a>
-          </article>
+        <!-- Languages -->
+        <div class="languages">
+          <h3 class="languages__title" data-reveal>Languages</h3>
+          <div class="languages__grid">
+            <div class="lang" data-reveal>
+              <div class="lang__name">Arabic</div>
+              <div class="lang__level">Native</div>
+              <div class="lang__bar" data-level="100"><span></span></div>
+            </div>
+            <div class="lang" data-reveal data-reveal-delay="100">
+              <div class="lang__name">French</div>
+              <div class="lang__level">Fluent · B2</div>
+              <div class="lang__bar" data-level="80"><span></span></div>
+            </div>
+            <div class="lang" data-reveal data-reveal-delay="200">
+              <div class="lang__name">English</div>
+              <div class="lang__level">Fluent · C1, certified</div>
+              <div class="lang__bar" data-level="90"><span></span></div>
+            </div>
+            <div class="lang" data-reveal data-reveal-delay="300">
+              <div class="lang__name">German</div>
+              <div class="lang__level">Basic · A1, learning</div>
+              <div class="lang__bar" data-level="20"><span></span></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="skills" class="section-shell skills-section">
-      <div class="section-heading" data-reveal>
-        <p class="eyebrow">Technical skills</p>
-        <h2>A technical stack grouped by how it is used in production.</h2>
-        <p>Grouped by area so the main technologies, delivery practices, and production tooling are easy to scan.</p>
-      </div>
-
-      <div class="skill-controls" data-reveal>
-        <button class="skill-filter active" data-filter="all">All</button>
-        <button class="skill-filter" data-filter="frontend">Frontend</button>
-        <button class="skill-filter" data-filter="backend">Backend</button>
-        <button class="skill-filter" data-filter="data">Data</button>
-        <button class="skill-filter" data-filter="platform">Platform</button>
-        <button class="skill-filter" data-filter="quality">Quality</button>
-      </div>
-
-      <div class="skill-matrix" data-reveal>
-        <article class="skill-cluster tilt-card" data-category="frontend">
-          <h3>Frontend</h3>
-          <div class="skill-pills"><span>React</span><span>Next.js</span><span>TypeScript</span><span>JavaScript</span><span>HTML5</span><span>CSS3</span><span>Vue.js</span><span>Nuxt.js</span></div>
-        </article>
-        <article class="skill-cluster tilt-card" data-category="backend">
-          <h3>Backend</h3>
-          <div class="skill-pills"><span>Python</span><span>Django</span><span>Node.js</span><span>REST API design</span><span>BFF architecture</span></div>
-        </article>
-        <article class="skill-cluster tilt-card" data-category="data">
-          <h3>Databases & caching</h3>
-          <div class="skill-pills"><span>PostgreSQL</span><span>MySQL</span><span>Redis</span></div>
-        </article>
-        <article class="skill-cluster tilt-card" data-category="platform">
-          <h3>Infrastructure & delivery</h3>
-          <div class="skill-pills"><span>Docker</span><span>Git</span><span>GitHub Actions</span><span>CI/CD</span><span>npm publishing</span><span>CLI tooling</span></div>
-        </article>
-        <article class="skill-cluster tilt-card" data-category="quality">
-          <h3>Testing & observability</h3>
-          <div class="skill-pills"><span>Jest</span><span>Vitest</span><span>React Testing Library</span><span>Sentry</span><span>Grafana</span><span>Production monitoring</span><span>On-call debugging</span></div>
-        </article>
-        <article class="skill-cluster tilt-card" data-category="quality">
-          <h3>Product systems</h3>
-          <div class="skill-pills"><span>Statsig</span><span>A/B testing</span><span>Checkout flows</span><span>Commercial surfaces</span><span>Internal tooling</span></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section-shell profile-grid" data-reveal>
-      <article class="language-panel tilt-card">
-        <p class="eyebrow">Languages</p>
-        <h2>Clear communication across teams.</h2>
-        <div class="language-list">
-          <span><b>Arabic</b> Native</span>
-          <span><b>French</b> Fluent B2</span>
-          <span><b>English</b> Fluent C1 certified</span>
-          <span><b>German</b> Basic A1, currently learning</span>
+    <!-- Education -->
+    <section class="section section--education">
+      <div class="section__inner">
+        <div class="section__head" data-reveal>
+          <span class="section__num">05</span>
+          <h2 class="section__title">Education</h2>
         </div>
-      </article>
-      <article class="education-panel tilt-card">
-        <p class="eyebrow">Education</p>
-        <h2>Bachelor’s Degree in Computer Science Engineering</h2>
-        <p>ESPRIT — Ecole Supérieure Privée d'Ingénierie et de Technologies, Tunisia · 2020</p>
-      </article>
+        <div class="education" data-reveal>
+          <div class="education__year">2020</div>
+          <div class="education__body">
+            <h3 class="education__degree">Bachelor's Degree in Computer Science Engineering</h3>
+            <p class="education__school">Ecole Supérieure Privée d'Ingénierie et de Technologies (ESPRIT)</p>
+            <p class="education__location">Tunisia</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="contact" class="section-shell contact-section" data-reveal>
-      <div>
-        <p class="eyebrow">Contact</p>
-        <h2>Open to senior full-stack engineering opportunities.</h2>
-        <p>Currently focused on roles in Germany and remote-friendly product engineering teams.</p>
-      </div>
-      <div class="contact-actions">
-        <a class="btn btn-primary" href="mailto:moham.ayedi@gmail.com">moham.ayedi@gmail.com</a>
-        <a class="btn btn-secondary" href="https://www.linkedin.com/in/mohamed-ali-ayedi" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a class="btn btn-secondary" href="https://github.com/mayedi" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <!-- Contact -->
+    <section id="contact" class="section section--contact">
+      <div class="section__inner">
+        <div class="contact" data-reveal>
+          <span class="section__num">06</span>
+          <h2 class="contact__title">Let's <em>talk</em>.</h2>
+          <p class="contact__lead">
+            I'm relocating to Germany and looking for my next senior full-stack role. If you're hiring — or just want to chat about frontend architecture, BFFs, or React migrations — drop a line.
+          </p>
+
+          <div class="contact__methods">
+            <a href="mailto:moham.ayedi@gmail.com" class="contact__method">
+              <span class="contact__label">Email</span>
+              <span class="contact__value">moham.ayedi@gmail.com</span>
+            </a>
+            <a href="tel:+447557646725" class="contact__method">
+              <span class="contact__label">Phone</span>
+              <span class="contact__value">+44 7557 646 725</span>
+            </a>
+            <a href="https://linkedin.com/in/mohamed-ali-ayedi" target="_blank" rel="noopener" class="contact__method">
+              <span class="contact__label">LinkedIn</span>
+              <span class="contact__value">mohamed-ali-ayedi</span>
+            </a>
+            <a href="https://github.com/mayedi" target="_blank" rel="noopener" class="contact__method">
+              <span class="contact__label">GitHub</span>
+              <span class="contact__value">mayedi</span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <span>© 2026 Mohamed Ali Ayadi</span>
+        <span class="footer__sep">·</span>
+      </div>
+    </footer>
+
   </main>
 
-  <footer class="site-footer">
-    <span>Built as a static HTML/CSS/JS interactive portfolio.</span>
-    <button id="backToTop" aria-label="Back to top">↑</button>
-  </footer>
-
-  <div class="toast" id="toast" role="status" aria-live="polite">Copied install command</div>
-  <script src="app.js"></script>
+  <script src="three-scene.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
